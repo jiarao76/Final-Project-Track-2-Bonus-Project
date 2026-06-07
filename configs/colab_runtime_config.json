@@ -1,0 +1,146 @@
+{
+  "homework_name": "Final Project Track 2 Bonus: Go2 Track Navigation",
+  "robot": "Go2",
+  "environment_name": "Go2JoystickFlatTerrain",
+  "framework": "MuJoCo Playground + Brax PPO + MJX",
+  "backend_impl": "jax",
+  "actor_obs_key": "state",
+  "critic_obs_key": "privileged_state",
+  "use_domain_randomization": true,
+  "seed": 0,
+  "control": {
+    "ctrl_dt": 0.02,
+    "sim_dt": 0.004,
+    "action_scale": 0.5,
+    "action_type": "absolute_joint_position_target",
+    "torque_mapping": "position_target_through_pd_actuator"
+  },
+  "course_budget": {
+    "baseline_total_env_steps": 15000000,
+    "leaderboard_max_env_steps": 30000000,
+    "flat_terrain_only": true,
+    "require_colab_gpu_runtime": true
+  },
+  "training_defaults": {
+    "num_envs": 1024,
+    "num_eval_envs": 128,
+    "num_evals": 5,
+    "batch_size": 256,
+    "policy_hidden_layer_sizes": [256, 256, 128],
+    "value_hidden_layer_sizes": [256, 256, 128]
+  },
+  "stage_1": {
+    "name": "stage_1",
+    "num_timesteps": 10000000,
+    "command_range": {
+      "min": [0.0, 0.0, 0.0],
+      "max": [0.8, 0.0, 0.0]
+    },
+    "command_keep_prob": [1.0, 0.0, 0.0],
+    "reward_scales": {
+      "action_rate": -0.02,
+      "energy": -0.0015
+    }
+  },
+  "stage_2": {
+    "name": "stage_2",
+    "num_timesteps": 15000000,
+    "command_range": {
+      "min": [-0.7, -0.4, -1.0],
+      "max": [0.95, 0.4, 1.0]
+    },
+    "command_keep_prob": [0.9, 0.8, 0.8],
+    "student_stage2_goal": {
+      "command_range": {
+        "min": [-0.7, -0.4, -1.0],
+        "max": [0.95, 0.4, 1.0]
+      },
+      "command_keep_prob": [0.9, 0.8, 0.8]
+    },
+    "reward_scales": {
+      "tracking_lin_vel": 1.6,
+      "tracking_ang_vel": 1.2,
+      "feet_air_time": 0.12,
+      "action_rate": -0.015,
+      "energy": -0.0012
+    },
+    "restore_previous_stage_checkpoint": true
+  },
+  "demo_rollout": {
+    "segment_seconds": 2.5,
+    "segments": [
+      [0.0, 0.0, 0.0],
+      [0.2, 0.0, 0.0],
+      [0.4, 0.0, 0.0],
+      [0.6, 0.0, 0.0],
+      [0.3, 0.0, 0.0],
+      [0.0, 0.0, 0.0]
+    ]
+  },
+  "public_eval": {
+    "episode_length_seconds": 30.0,
+    "safe_command_ranges": {
+      "vx": [-0.6, 0.6],
+      "vy": [-0.2, 0.2],
+      "yaw": [-0.6, 0.6]
+    },
+    "metrics": {
+      "velocity_tracking_error": {
+        "direction": "lower_better",
+        "weight": 0.35,
+        "good": 0.1,
+        "bad": 0.45
+      },
+      "yaw_tracking_error": {
+        "direction": "lower_better",
+        "weight": 0.2,
+        "good": 0.1,
+        "bad": 0.5
+      },
+      "fall_rate": {
+        "direction": "lower_better",
+        "weight": 0.2,
+        "good": 0.0,
+        "bad": 0.35
+      },
+      "energy_proxy": {
+        "direction": "lower_better",
+        "weight": 0.15,
+        "good": 8.0,
+        "bad": 40.0
+      },
+      "foot_slip_proxy": {
+        "direction": "lower_better",
+        "weight": 0.1,
+        "good": 0.02,
+        "bad": 0.2
+      }
+    }
+  },
+  "files_to_read_first": [
+    "go2_pg_env/joystick.py",
+    "go2_pg_env/track.py",
+    "track_bonus/planner.py",
+    "run_track_bonus.py",
+    "train_highlevel_mlp.py"
+  ],
+  "submission": {
+    "required_files": [
+      "best_checkpoint/",
+      "planner_config.json",
+      "planner_weights.npz",
+      "track_eval/results.json",
+      "short_report.pdf"
+    ]
+  },
+  "runtime_overrides": {
+    "num_envs": 1024,
+    "num_eval_envs": 128,
+    "num_evals": 5,
+    "batch_size": 256,
+    "policy_hidden_layer_sizes": [256, 256, 128],
+    "value_hidden_layer_sizes": [256, 256, 128],
+    "stage_1_num_timesteps": 10000000,
+    "stage_2_num_timesteps": 15000000
+  }
+}
