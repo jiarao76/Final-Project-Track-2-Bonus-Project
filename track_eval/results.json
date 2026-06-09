@@ -1,0 +1,42 @@
+{
+  "challenge": "track_bonus",
+  "entry_name": "Jiarao_Zhang",
+  "checkpoint_dir": "/content/go2_track_bonus_repo/artifacts/sprint_checkpoint",
+  "planner_config": "/content/go2_track_bonus_repo/artifacts/highlevel_mlp/planner_config.json",
+  "official_track": {
+    "track_length_m": 200.0,
+    "turn_radius_m": 18.25,
+    "half_width_m": 2.0
+  },
+  "metrics": {
+    "lap_completion": 1.0,
+    "valid_distance_m": 200.0,
+    "finish_time": 115.06,
+    "mean_progress_speed": 1.7382235355466713,
+    "alive_time": 115.06,
+    "fall": false,
+    "fall_step": null,
+    "boundary_violation": false,
+    "boundary_violation_step": null,
+    "rms_lateral_error": 0.14736944714929934,
+    "max_lateral_error": 0.3143597074982638,
+    "min_boundary_margin_m": 1.6856402925017362,
+    "energy_proxy": 17.939790725708008,
+    "foot_slip_proxy": 1.803310513496399,
+    "total_time": 300.0,
+    "num_steps": 15000
+  },
+  "scores": {
+    "completion_score": 1.0,
+    "speed_score": 1.0,
+    "line_keeping_score": 1.0,
+    "stability_score": 1.0,
+    "efficiency_score": 0.43881420444797825,
+    "composite_score": 0.971940710222399
+  },
+  "artifacts": {
+    "leaderboard_csv": "/content/go2_track_bonus_repo/artifacts/track_eval/leaderboard.csv",
+    "rollouts_npz": "/content/go2_track_bonus_repo/artifacts/track_eval/race_rollouts.npz",
+    "video_path": null
+  }
+}
