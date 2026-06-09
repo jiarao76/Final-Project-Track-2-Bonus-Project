@@ -4,8 +4,7 @@
   "checkpoint_dir": "best_checkpoint",
   "planner_config": "planner_config.json",
   "planner_code": "track_bonus/planner.py",
-  "planner_weights": "planner_weights.npz",
-  "high_level_planner_type": "learned_mlp_cmaes",
+  "high_level_planner_type": "mlp",
   "track_eval": "track_eval/results.json",
-  "notes": "Low-level: reused HW1 best_checkpoint (PPO, stage1+stage2, composite_score=0.97). High-level: 5->32->16->3 MLP trained with diagonal CMA-ES (40 generations x 10 population, 15s eval per candidate). Failed idea: PD parameter tuning via train_highlevel_starter.py -- converged faster but lower composite score than MLP on corners."
+  "notes": "Low-level: sprint fine-tuned PPO checkpoint (vx 1.6-2.8 m/s, vy \u00b10.08, yaw \u00b10.65 rad/s, [256,256,128] silu policy). Self-trained policy (0-1.3 m/s) was discarded: diagnostic showed yaw\u22600 caused immediate falls due to no turning trained in stage_2. High-level: 5\u219232\u219216\u21923 MLP (vx\u2208[1.6,2.8], vy\u2208[-0.08,0.08], yaw\u2208[-0.65,0.65]) trained with CMA-ES (12 gen \u00d7 8 pop, sigma=0.08, diagonal covariance, 120s eval per candidate). Fitness = composite_score from score_track_bonus(). StarterPD tuning (k_lateral=0.15) gave score=0.924 (LAP 101s) as baseline. Failed attempts: CMA-ES with self-trained policy (yaw\u2192fall), StarterPD with self-trained policy (any k_heading\u2192fall), sigma=0.30 (MLP saturates\u2192off-track)."
 }

@@ -1,0 +1,12 @@
+{
+  "planner_type": "mlp",
+  "mlp_weights_path": "mlp_sprint_weights.npz",
+  "mlp_hidden": [
+    32,
+    16
+  ],
+  "stand_seconds": 1.0,
+  "track_length_m": 200.0,
+  "turn_radius_m": 18.25,
+  "half_width_m": 2.0
+}

@@ -26,10 +26,10 @@ from track_bonus.controller_interface import TrackControllerObservation
 from track_bonus.official_track import official_track
 
 # ── Physical command limits ────────────────────────────────────────────────────
-_VX_MIN: float = 0.15   # m/s – never walk slower than this
-_VX_MAX: float = 0.50   # m/s – top forward speed
-_VY_LIM: float = 0.10   # m/s – lateral correction limit
-_YAW_LIM: float = 0.30  # rad/s – yaw rate limit
+_VX_MIN: float = 1.60   # m/s – never walk slower than this
+_VX_MAX: float = 2.80   # m/s – top forward speed
+_VY_LIM: float = 0.08   # m/s – lateral correction limit
+_YAW_LIM: float = 0.65  # rad/s – yaw rate limit
 
 
 # ══════════════════════════════════════════════════════════════════════════════

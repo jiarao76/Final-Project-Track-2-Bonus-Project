@@ -1,0 +1,2 @@
+rank,name,composite_score,lap_completion,valid_distance_m,finish_time,mean_progress_speed,fall,boundary_violation,rms_lateral_error,max_lateral_error
+1,Jiarao_Zhang,0.971940710222399,1.0,200.0,115.06,1.7382235355466713,False,False,0.14736944714929934,0.3143597074982638
